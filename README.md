@@ -1,2 +1,22 @@
 # MASA
-MASA is an innovative e-commerce platform revolutionizing fashion shopping in Egypt. It offers high-quality clothing at competitive prices with a seamless shopping experience, including advanced search, secure checkout, and order tracking. Built with React, .NET Core, and SQL Server, MASA aims to be Egypt’s leading online fashion retailer.
+
+## Overview
+MASA is an e-commerce platform designed to enhance the online fashion shopping experience in Egypt. The platform offers high-quality, stylish clothing at competitive prices while ensuring a seamless user experience.
+
+## Features
+- Advanced search and filtering options
+- Secure checkout and multiple payment methods
+- Order tracking and purchase history
+- Inventory management for administrators
+- Customer reviews and ratings
+
+## Technologies Used
+- Frontend: React.js
+- Backend: .NET Core, SQL Server
+- Hosting: Azure/AWS
+
+## Team Members
+- Ahmed Gamal - Full-Stack Developer
+- Salma Akram - Full-Stack Developer
+- Mai Shehab - Full-Stack Developer
+- Abdelrahman Tawheed - Full-Stack Developer
