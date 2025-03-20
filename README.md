@@ -3,8 +3,10 @@
 ## Overview
 MASA is an e-commerce platform designed to enhance the online fashion shopping experience in Egypt. The platform offers high-quality, stylish clothing at competitive prices while ensuring a seamless user experience.
 
-## System Diagrams  
-All project diagrams are available on [Google Drive](https://drive.google.com/drive/folders/1_xX3pzX3BVyZF7ChlCi6RxWEcUMzw419?usp=drive_link).
+## Design & System Diagrams  
+
+- **System Diagrams:** Available on [Google Drive](https://drive.google.com/drive/folders/1_xX3pzX3BVyZF7ChlCi6RxWEcUMzw419?usp=drive_link).  
+- **UI/UX Design:** Available on [Figma](https://www.figma.com/design/DpDSuVv3kEFhh7WQiLUE2Q/e-commerce?node-id=1-2903&t=ylV4GjcZacKoNAzq-0).  
 
 ## Features
 - Advanced search and filtering options
