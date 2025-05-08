@@ -34,7 +34,7 @@ We’re a team of passionate developers who collaborated to build MASA as part o
 ##  Design & System Diagrams
 
 - **System Diagram** → [View on Google Drive](https://drive.google.com/drive/folders/1_xX3pzX3BVyZF7ChlCi6RxWEcUMzw419?usp=drive_link)  
-- **UI/UX Design** → [View on Figma](https://www.figma.com/design/DpDSuVv3kEFhh7WQiLUE2Q/e-commerce?node-id=1-2903&t=ylV4GjcZacKoNAzq-0)  
+
 
 ---
 
