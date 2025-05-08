@@ -15,7 +15,7 @@ MASA is an e-commerce platform designed to enhance the online book shopping expe
 - Customer reviews and ratings
 
 ## Technologies Used
-- Frontend: HTML, CSS, JavaScript  
+- Frontend: HTML, CSS, JavaScript,Bootstrap  
 - Backend: .NET Core, SQL Server  
 - Hosting: Azure/AWS  
 
