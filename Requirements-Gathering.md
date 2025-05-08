@@ -11,8 +11,11 @@
 
 ## User Stories & Use Cases
 1.As a customer, I want to filter books by genre, author, and price so I can find what I need quickly.
+
 2.As a customer, I want to read reviews and ratings to make informed buying decisions.
+
 3.As an admin, I want to manage inventory and update book details to ensure accurate listings.
+
 4.As a customer, I want to track my order status so I know when to expect delivery.
 
 ## Functional Requirements
