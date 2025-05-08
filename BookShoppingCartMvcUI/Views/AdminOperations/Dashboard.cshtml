@@ -1,0 +1,85 @@
+﻿@{
+    Layout = "_AdminLayout";
+}
+
+<div class="container-fluid py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <h2 class="text-primary fw-bold mb-4">Welcome to MASA Admin Dashboard</h2>
+                    <p class="lead">Manage your bookstore inventory, orders, and more from this central dashboard.</p>
+
+                    <div class="row mt-4 g-4">
+                        <div class="col-md-4">
+                            <div class="card bg-light border-0">
+                                <div class="card-body p-4 text-center">
+                                    <div class="dashboard-icon mb-3">
+                                        <i class="bi bi-book"></i>
+                                    </div>
+                                    <h4>Books</h4>
+                                    <p>Manage your book inventory</p>
+                                    <a asp-controller="Book" asp-action="Index" class="btn btn-primary">Go to Books</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card bg-light border-0">
+                                <div class="card-body p-4 text-center">
+                                    <div class="dashboard-icon mb-3">
+                                        <i class="bi bi-tags"></i>
+                                    </div>
+                                    <h4>Genres</h4>
+                                    <p>Manage book categories</p>
+                                    <a asp-controller="Genre" asp-action="Index" class="btn btn-primary">Go to Genres</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card bg-light border-0">
+                                <div class="card-body p-4 text-center">
+                                    <div class="dashboard-icon mb-3">
+                                        <i class="bi bi-bag"></i>
+                                    </div>
+                                    <h4>Orders</h4>
+                                    <p>View and manage customer orders</p>
+                                    <a asp-controller="AdminOperations" asp-action="AllOrders" class="btn btn-primary">Go to Orders</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .dashboard-icon {
+        width: 70px;
+        height: 70px;
+        background-color: rgba(58, 90, 120, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+    }
+
+        .dashboard-icon i {
+            font-size: 2rem;
+            color: #3a5a78;
+        }
+
+    .btn-primary {
+        background-color: #3a5a78;
+        border-color: #3a5a78;
+    }
+
+        .btn-primary:hover {
+            background-color: #2c4660;
+            border-color: #2c4660;
+        }
+</style>

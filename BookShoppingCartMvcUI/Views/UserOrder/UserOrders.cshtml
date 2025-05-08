@@ -1,0 +1,265 @@
+﻿@model IEnumerable<Order>
+@{
+    ViewData["Title"] = "My Orders";
+}
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">My Orders</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li class="breadcrumb-item"><a href="/Identity/Account/Manage">My Account</a></li>
+                <li class="breadcrumb-item active" aria-current="page">My Orders</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="mb-4">
+        <a href="/Identity/Account/Manage" class="btn btn-outline-primary">
+            <i class="bi bi-arrow-left me-2"></i>Back to Account
+        </a>
+    </div>
+
+    @if (Model != null && Model.Count() > 0)
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="accordion" id="ordersAccordion">
+                    @foreach (var order in Model)
+                    {
+                        <div class="accordion-item mb-3 border-0 shadow-sm">
+                            <h2 class="accordion-header" id="heading-@order.Id">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@order.Id" aria-expanded="false" aria-controls="collapse-@order.Id">
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <div>
+                                            <span class="fw-bold">Order Date:</span> @order.CreateDate.ToString("dd-MM-yyyy")
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <span class="me-3">
+                                                <span class="fw-bold">Status:</span>
+                                                <span class="badge @(order.OrderStatus.StatusName == "Delivered" ? "bg-success" : order.OrderStatus.StatusName == "Processing" ? "bg-primary" : order.OrderStatus.StatusName == "Shipped" ? "bg-info" : "bg-secondary")">
+                                                    @order.OrderStatus.StatusName
+                                                </span>
+                                            </span>
+                                            <span class="order-total-badge">
+                                                $@(order.OrderDetail?.Select(item => item.Book.Price * item.Quantity).Sum() ?? 0)
+                                            </span>
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="collapse-@order.Id" class="accordion-collapse collapse" aria-labelledby="heading-@order.Id" data-bs-parent="#ordersAccordion">
+                                <div class="accordion-body p-4">
+                                    @if (order.OrderDetail != null && order.OrderDetail.Count > 0)
+                                    {
+                                        <div class="order-summary mb-4">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="order-info-card">
+                                                        <h5 class="card-title">Order Information</h5>
+                                                        <div class="order-info-item">
+                                                            <span class="info-label">Order ID:</span>
+                                                            <span class="info-value">#@order.Id</span>
+                                                        </div>
+                                                        <div class="order-info-item">
+                                                            <span class="info-label">Order Date:</span>
+                                                            <span class="info-value">@order.CreateDate.ToString("dd MMMM yyyy")</span>
+                                                        </div>
+                                                        <div class="order-info-item">
+                                                            <span class="info-label">Status:</span>
+                                                            <span class="info-value">
+                                                                <span class="badge @(order.OrderStatus.StatusName == "Delivered" ? "bg-success" : order.OrderStatus.StatusName == "Processing" ? "bg-primary" : order.OrderStatus.StatusName == "Shipped" ? "bg-info" : "bg-secondary")">
+                                                                    @order.OrderStatus.StatusName
+                                                                </span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="order-info-card">
+                                                        <h5 class="card-title">Payment Information</h5>
+                                                        <div class="order-info-item">
+                                                            <span class="info-label">Total:</span>
+                                                            <span class="info-value fw-bold">$@(order.OrderDetail.Select(item => item.Book.Price * item.Quantity).Sum())</span>
+                                                        </div>
+                                                        <div class="order-info-item">
+                                                            <span class="info-label">Payment Method:</span>
+                                                            <span class="info-value">@(order.PaymentMethod ?? "Not specified")</span>
+                                                        </div>
+                                                        <div class="order-info-item">
+                                                            <span class="info-label">Payment Status:</span>
+                                                            <span class="info-value">
+                                                                <span class="badge @(order.IsPaid ? "bg-success" : "bg-danger")">
+                                                                    @(order.IsPaid ? "Paid" : "Unpaid")
+                                                                </span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <h5 class="mb-3">Order Items</h5>
+                                        <div class="table-responsive">
+                                            <table class="table table-hover align-middle">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th scope="col">Book</th>
+                                                        <th scope="col">Genre</th>
+                                                        <th scope="col">Unit Price</th>
+                                                        <th scope="col">Total Price</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in order.OrderDetail)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                <div class="order-item-info">
+                                                                    <h6 class="mb-0">@item.Book.BookName</h6>
+                                                                </div>
+                                                            </td>
+                                                            <td>@item.Book.Genre.GenreName</td>
+                                                            <td>$@item.Book.Price X @item.Quantity</td>
+                                                            <td class="fw-bold">$@(item.Book.Price * item.Quantity)</td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                                <tfoot class="table-light">
+                                                    <tr>
+                                                        <td colspan="3" class="text-end fw-bold">Total:</td>
+                                                        <td class="fw-bold">$@(order.OrderDetail.Select(item => item.Book.Price * item.Quantity).Sum())</td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="empty-orders text-center py-5">
+            <div class="empty-orders-icon mb-4">
+                <i class="bi bi-bag-x"></i>
+            </div>
+            <h2 class="mb-3">No Orders Yet</h2>
+            <p class="text-muted mb-4">You haven't placed any orders yet. Start shopping to see your orders here.</p>
+            <a href="@Url.Action("Index", "Home")" class="btn btn-primary btn-lg px-5">
+                Start Shopping
+            </a>
+        </div>
+    }
+</div>
+
+<style>
+    /* Accordion styling */
+    .accordion-item {
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+
+    .accordion-button {
+        padding: 1.25rem;
+        background-color: #fff;
+        box-shadow: none;
+    }
+
+        .accordion-button:not(.collapsed) {
+            color: #3a5a78;
+            background-color: rgba(58, 90, 120, 0.05);
+            box-shadow: none;
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(58, 90, 120, 0.1);
+        }
+
+        .accordion-button::after {
+            background-size: 1.25rem;
+            transition: all 0.2s ease;
+        }
+
+    /* Order total badge */
+    .order-total-badge {
+        background-color: #3a5a78;
+        color: white;
+        padding: 0.35rem 0.75rem;
+        border-radius: 2rem;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    /* Order summary cards */
+    .order-summary {
+        background-color: #f8f9fa;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .order-info-card {
+        height: 100%;
+        padding: 1rem;
+    }
+
+        .order-info-card .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #3a5a78;
+        }
+
+    .order-info-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.75rem;
+    }
+
+    .info-label {
+        color: #6c757d;
+    }
+
+    .info-value {
+        font-weight: 500;
+    }
+
+    /* Order item styling */
+    .order-item-info h6 {
+        font-weight: 600;
+    }
+
+    /* Empty orders */
+    .empty-orders-icon {
+        font-size: 5rem;
+        color: #dee2e6;
+    }
+
+    /* Button styling */
+    .btn-primary {
+        background-color: #3a5a78;
+        border-color: #3a5a78;
+    }
+
+        .btn-primary:hover {
+            background-color: #2c4660;
+            border-color: #2c4660;
+        }
+
+    .btn-outline-primary {
+        color: #3a5a78;
+        border-color: #3a5a78;
+    }
+
+        .btn-outline-primary:hover {
+            background-color: #3a5a78;
+            border-color: #3a5a78;
+        }
+</style>

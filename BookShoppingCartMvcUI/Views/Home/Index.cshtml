@@ -1,0 +1,872 @@
+﻿@model BookDisplayModel
+@{
+}
+
+<!-- Hero Banner Section -->
+<div class="hero-banner mb-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h1 class="display-4 fw-bold mb-3">Discover Your Next Favorite Book</h1>
+                <p class="lead mb-4">Explore our vast collection of books across all genres. From bestsellers to rare finds, MASA has something for every reader.</p>
+                <div class="d-flex gap-3">
+                    <a href="#featured-books" class="btn btn-primary btn-lg px-4">Featured Books</a>
+                    <a href="#all-books" class="btn btn-outline-dark btn-lg px-4">Browse All</a>
+                </div>
+            </div>
+            @* <div class="col-lg-6"> *@
+            @*     <div class="hero-image-container"> *@
+            @*         <img src="/images/Books.jpeg" alt="MASA Bookstore Collection" class="img-fluid rounded shadow-lg" onerror="this.src='/placeholder.svg?height=400&width=600'; this.onerror=null;"> *@
+            @*     </div> *@
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Category Pills -->
+<div class="category-section mb-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="section-title-sm">Popular Categories</h2>
+            <a href="#all-books" class="text-decoration-none">View All <i class="bi bi-arrow-right"></i></a>
+        </div>
+        <div class="category-pills">
+            <a href="#all-books" class="category-pill">Action</a>
+            <a href="#all-books" class="category-pill">Thriller</a>
+            <a href="#all-books" class="category-pill">Crime</a>
+            <a href="#all-books" class="category-pill">Self-Help</a>
+            <a href="#all-books" class="category-pill">Programming</a>
+        </div>
+    </div>
+</div>
+
+<!-- Featured Books Carousel Section -->
+<div id="featured-books" class="featured-books-section py-5 mb-5">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <h2 class="section-title">Featured Books</h2>
+                <p class="text-muted">Discover our handpicked selection of must-read titles</p>
+            </div>
+        </div>
+
+        <div id="featuredBooksCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        @{
+                            // Get 3 random books from the model
+                            var randomBooks = Model.Books.OrderBy(x => Guid.NewGuid()).Take(3).ToList();
+
+                            foreach (var book in randomBooks)
+                            {
+                                <div class="col-md-4">
+                                    <div class="featured-book-card">
+                                        <div class="featured-book-image">
+                                            @if (string.IsNullOrEmpty(book.Image))
+                                            {
+                                                <img src="/images/NoImage.png" alt="@book.BookName">
+                                            }
+                                            else
+                                            {
+                                                <img src="/images/@book.Image" alt="@book.BookName">
+                                            }
+                                        </div>
+                                        <div class="featured-book-info">
+                                            <h5>@book.BookName</h5>
+                                            <p class="author">by @book.AuthorName</p>
+                                            <div class="rating">
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-half"></i>
+                                            </div>
+                                            <p class="price">$@book.Price</p>
+                                            @if (book.Quantity > 0)
+                                            {
+                                                <button type="button" onclick="add(@book.Id)" class="btn btn-outline-primary btn-sm">
+                                                    <i class="bi bi-cart-plus"></i> Add to cart
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-danger">Out of stock</span>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        @{
+                            // Get another 3 random books, different from the first set
+                            var moreRandomBooks = Model.Books.Except(randomBooks).OrderBy(x => Guid.NewGuid()).Take(3).ToList();
+
+                            foreach (var book in moreRandomBooks)
+                            {
+                                <div class="col-md-4">
+                                    <div class="featured-book-card">
+                                        <div class="featured-book-image">
+                                            @if (string.IsNullOrEmpty(book.Image))
+                                            {
+                                                <img src="/images/NoImage.png" alt="@book.BookName">
+                                            }
+                                            else
+                                            {
+                                                <img src="/images/@book.Image" alt="@book.BookName">
+                                            }
+                                        </div>
+                                        <div class="featured-book-info">
+                                            <h5>@book.BookName</h5>
+                                            <p class="author">by @book.AuthorName</p>
+                                            <div class="rating">
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star-fill"></i>
+                                                <i class="bi bi-star"></i>
+                                            </div>
+                                            <p class="price">$@book.Price</p>
+                                            @if (book.Quantity > 0)
+                                            {
+                                                <button type="button" onclick="add(@book.Id)" class="btn btn-outline-primary btn-sm">
+                                                    <i class="bi bi-cart-plus"></i> Add to cart
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-danger">Out of stock</span>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#featuredBooksCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon featured-control" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#featuredBooksCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon featured-control" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#featuredBooksCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#featuredBooksCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Reading Benefits Section -->
+<div class="reading-benefits mb-5">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <h2 class="section-title">Why Reading Matters</h2>
+                <p class="text-muted">Discover the many benefits of making reading a part of your daily life</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-3 col-sm-6">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="bi bi-book"></i>
+                    </div>
+                    <h5>Improves Brain Function</h5>
+                    <p>Reading stimulates mental activity and improves memory and concentration.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="bi bi-emoji-smile"></i>
+                    </div>
+                    <h5>Reduces Stress</h5>
+                    <p>Reading can lower heart rate and ease tension in muscles, reducing stress by up to 68%.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="bi bi-lightbulb"></i>
+                    </div>
+                    <h5>Expands Knowledge</h5>
+                    <p>Books are a rich source of information and can expand your understanding of the world.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="bi bi-heart"></i>
+                    </div>
+                    <h5>Builds Empathy</h5>
+                    <p>Reading fiction helps you understand different perspectives and increases empathy.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Search Section with Decorative Element -->
+<div id="all-books" class="search-section mb-5">
+    <div class="container">
+        <div class="search-container">
+            <div class="decorative-book-stack">
+                <div class="book book1"></div>
+                <div class="book book2"></div>
+                <div class="book book3"></div>
+            </div>
+            <div class="search-content">
+                <h2 class="section-title-sm mb-4">Find Your Perfect Book</h2>
+                <form asp-action="Index" class="row g-3 align-items-center bg-light p-4 rounded shadow-sm">
+                    <div class="col-md-4 col-sm-6">
+                        <label class="form-label" for="genreId">Genre</label>
+                        <select class="form-select" id="genreId" name="genreId">
+                            <option value="">All Genres</option>
+                            @foreach (var genre in Model.Genres)
+                            {
+                                <option selected="@(genre.Id == Model.GenreId)" value="@genre.Id">@genre.GenreName</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <label class="form-label" for="sterm">Search by title</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" value="@Model.STerm" id="sterm" name="sterm" placeholder="Search by title">
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-sm-12 d-flex align-items-end">
+                        <div class="d-grid gap-2 w-100">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                            <a href="/Home/Index" class="btn btn-outline-dark">Reset</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Book Collection -->
+<div class="book-collection mb-5">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12">
+                <h2 class="section-title-sm">Our Collection</h2>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var book in Model.Books)
+            {
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm hover-shadow">
+                        <div class="book-image-container">
+                            @if (string.IsNullOrEmpty(book.Image))
+                            {
+                                <img src="/images/NoImage.png" class="card-img-top book-image" alt="@book.BookName">
+                            }
+                            else
+                            {
+                                <img src="/images/@book.Image" class="card-img-top book-image" alt="@book.BookName">
+                            }
+                            <div class="image-overlay">
+                                <button class="btn btn-light btn-sm" onclick="viewImage('@(string.IsNullOrEmpty(book.Image) ? "/images/NoImage.png" : "/images/" + book.Image)')">
+                                    <i class="bi bi-zoom-in"></i> View Larger
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate" title="@book.BookName">@book.BookName</h5>
+                            <div class="card-text">
+                                <div class="row mb-2">
+                                    <div class="col-4 text-muted">Genre:</div>
+                                    <div class="col-8">@book.GenreName</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-4 text-muted">Author:</div>
+                                    <div class="col-8">@book.AuthorName</div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-4 text-muted">Price:</div>
+                                    <div class="col-8 fw-bold text-primary">$@book.Price</div>
+                                </div>
+                            </div>
+                            <div class="d-grid">
+                                @if (book.Quantity > 0)
+                                {
+                                    <button type="button" onclick="add(@book.Id)" class="btn btn-primary">
+                                        <i class="bi bi-cart-plus"></i> Add to cart
+                                    </button>
+                                }
+                                else
+                                {
+                                    <span class="btn btn-outline-danger disabled">
+                                        <i class="bi bi-x-circle"></i> Out of stock
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Newsletter Section -->
+<div class="newsletter-section mb-5">
+    <div class="container">
+        <div class="newsletter-container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="text-white mb-3">Join Our Book Club</h2>
+                    <p class="text-white mb-0">Subscribe to our newsletter and get updates on new releases, special offers, and literary events. Plus, receive a 10% discount on your next purchase!</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="newsletter-form">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your email address">
+                            <button class="btn btn-light" type="button">Subscribe</button>
+                        </div>
+                        <small class="form-text text-white-50 mt-2">We respect your privacy. Unsubscribe at any time.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Book Cover</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="modalImage" src="/placeholder.svg" class="img-fluid" alt="Book Cover">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Add to cart functionality
+        async function add(bookId) {
+            var usernameEl = document.getElementById("username");
+            if(usernameEl==null){
+                window.location.href = "/Identity/Account/Login";
+            }
+            try {
+                var response = await fetch(`/Cart/AddItem?bookId=${bookId}`);
+                if (response.status == 200) {
+                    var result = await response.json();
+                    var cartCountEl = document.getElementById("cartCount");
+                    cartCountEl.innerHTML = result;
+                    window.location.href = "#cartCount";
+                }
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+
+        // Image modal functionality
+        function viewImage(imageSrc) {
+            document.getElementById('modalImage').src = imageSrc;
+            var imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+            imageModal.show();
+        }
+
+        // Initialize carousel with a 5-second interval
+        document.addEventListener('DOMContentLoaded', function() {
+            var featuredCarousel = new bootstrap.Carousel(document.getElementById('featuredBooksCarousel'), {
+                interval: 5000
+            });
+        });
+    </script>
+
+    <style>
+        /* Hero Banner */
+        .hero-banner {
+            padding: 4rem 0;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .hero-banner::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 150px;
+                height: 150px;
+                background-color: rgba(58, 90, 120, 0.1);
+                border-radius: 50%;
+                transform: translate(50%, 50%);
+                z-index: 1;
+            }
+
+            .hero-banner::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100px;
+                height: 100px;
+                background-color: rgba(58, 90, 120, 0.1);
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 1;
+            }
+
+        .hero-image-container {
+            position: relative;
+            z-index: 2;
+        }
+
+            .hero-image-container::before {
+                content: '';
+                position: absolute;
+                top: -15px;
+                right: -15px;
+                width: 100%;
+                height: 100%;
+                border: 2px solid #3a5a78;
+                border-radius: 10px;
+                z-index: -1;
+            }
+
+        /* Category Pills */
+        .section-title-sm {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #3a5a78;
+            margin-bottom: 1rem;
+        }
+
+        .category-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .category-pill {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 30px;
+            color: #3a5a78;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+            .category-pill:hover {
+                background-color: #3a5a78;
+                color: white;
+                transform: translateY(-3px);
+                box-shadow: 0 5px 15px rgba(58, 90, 120, 0.2);
+            }
+
+        /* Featured Books Section */
+        .featured-books-section {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .featured-books-section::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 5px;
+                background: linear-gradient(90deg, #3a5a78 0%, #2c4660 100%);
+            }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #3a5a78;
+        }
+
+        .featured-book-card {
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            height: 220px;
+            margin: 1rem 0.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .featured-book-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            }
+
+        .featured-book-image {
+            width: 40%;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+        }
+
+            .featured-book-image img {
+                max-width: 100%;
+                max-height: 180px;
+                object-fit: contain;
+            }
+
+        .featured-book-info {
+            width: 60%;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+            .featured-book-info h5 {
+                font-size: 1rem;
+                font-weight: 600;
+                margin-bottom: 5px;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            .featured-book-info .author {
+                font-size: 0.85rem;
+                color: #6c757d;
+                margin-bottom: 8px;
+            }
+
+            .featured-book-info .rating {
+                color: #f39c12;
+                font-size: 0.9rem;
+                margin-bottom: 8px;
+            }
+
+            .featured-book-info .price {
+                font-weight: 700;
+                color: #3a5a78;
+                margin-bottom: 10px;
+            }
+
+        .carousel-control-prev, .carousel-control-next {
+            width: 5%;
+        }
+
+        .featured-control {
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            background-size: 50%;
+            background-position: center;
+        }
+
+        .carousel-indicators {
+            bottom: -10px;
+        }
+
+            .carousel-indicators button {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: #3a5a78;
+                opacity: 0.5;
+            }
+
+                .carousel-indicators button.active {
+                    opacity: 1;
+                }
+
+        /* Reading Benefits Section */
+        .benefit-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+            .benefit-card:hover {
+                transform: translateY(-5px);
+            }
+
+        .benefit-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(58, 90, 120, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+            .benefit-icon i {
+                font-size: 2rem;
+                color: #3a5a78;
+            }
+
+        .benefit-card h5 {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #3a5a78;
+        }
+
+        .benefit-card p {
+            color: #6c757d;
+            margin-bottom: 0;
+        }
+
+        /* Search Section with Decorative Element */
+        .search-container {
+            position: relative;
+            padding: 30px 0;
+        }
+
+        .decorative-book-stack {
+            position: absolute;
+            left: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100px;
+            height: 120px;
+            display: none;
+        }
+
+        media(min-width: 992px) {
+            .decorative-book-stack
+
+        {
+            display: block;
+        }
+
+        .search-content {
+            margin-left: 70px;
+        }
+
+        }
+
+        .book {
+            position: absolute;
+            height: 30px;
+            border-radius: 3px;
+        }
+
+        .book1 {
+            width: 80px;
+            background-color: #3a5a78;
+            bottom: 0;
+            transform: rotate(-5deg);
+        }
+
+        .book2 {
+            width: 70px;
+            background-color: #e74c3c;
+            bottom: 30px;
+            left: 5px;
+            transform: rotate(3deg);
+        }
+
+        .book3 {
+            width: 60px;
+            background-color: #f39c12;
+            bottom: 60px;
+            left: 15px;
+            transform: rotate(-2deg);
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            background-color: #f8f9fa;
+        }
+
+        .newsletter-container {
+            background-color: #3a5a78;
+            border-radius: 10px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .newsletter-container::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 200px;
+                height: 200px;
+                background-color: rgba(255, 255, 255, 0.05);
+                border-radius: 50%;
+                transform: translate(50%, -50%);
+            }
+
+            .newsletter-container::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 150px;
+                height: 150px;
+                background-color: rgba(255, 255, 255, 0.05);
+                border-radius: 50%;
+                transform: translate(-50%, 50%);
+            }
+
+        .newsletter-form .input-group {
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .newsletter-form .form-control {
+            border: none;
+            padding: 12px 20px;
+        }
+
+        .newsletter-form .btn {
+            padding: 0 25px;
+            background-color: white;
+            color: #3a5a78;
+            font-weight: 600;
+            border: none;
+        }
+
+            .newsletter-form .btn:hover {
+                background-color: #f8f9fa;
+            }
+
+        /* Book image styling */
+        .book-image-container {
+            position: relative;
+            overflow: hidden;
+            height: 350px; /* Increased height */
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .book-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background-color: #f8f9fa;
+            transition: transform 0.3s ease;
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            overflow: hidden;
+            width: 100%;
+            height: 0;
+            transition: .5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .book-image-container:hover .image-overlay {
+            height: 50px;
+        }
+
+        .book-image-container:hover .book-image {
+            transform: scale(1.05);
+        }
+
+        /* Card hover effect */
+        .hover-shadow {
+            transition: box-shadow 0.3s ease, transform 0.2s ease;
+        }
+
+            .hover-shadow:hover {
+                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+                transform: translateY(-5px);
+            }
+
+        /* Modal image */
+        #modalImage {
+            max-height: 70vh;
+        }
+
+        /* Responsive adjustments */
+        media (max-width: 768px) {
+            .book-image-container
+
+        {
+            height: 300px;
+        }
+
+        .featured-book-card {
+            height: auto;
+            flex-direction: column;
+        }
+
+        .featured-book-image, .featured-book-info {
+            width: 100%;
+        }
+
+        .featured-book-image {
+            height: 180px;
+        }
+
+        .newsletter-container {
+            padding: 2rem;
+        }
+
+        }
+
+        media (max-width: 576px) {
+            .book-image-container
+
+        {
+            height: 250px;
+        }
+
+        .hero-banner {
+            padding: 2rem 0;
+        }
+
+        .category-pills {
+            overflow-x: auto;
+            flex-wrap: nowrap;
+            padding-bottom: 10px;
+        }
+
+        .category-pill {
+            white-space: nowrap;
+        }
+
+        }</style>
+}

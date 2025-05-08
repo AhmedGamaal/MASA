@@ -1,0 +1,155 @@
+﻿@model IEnumerable<StockDisplayModel>
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Manage Stock";
+}
+
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-primary mb-0">
+            <i class="bi bi-box-seam me-2"></i>Inventory Management
+        </h2>
+    </div>
+
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body p-4">
+            <form asp-action="Index" method="get" class="row g-3 align-items-end mb-4">
+                <div class="col-md-4">
+                    <label class="form-label">Search by Book Title</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+                        <input type="text" name="sTerm" class="form-control" placeholder="Enter book title" />
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-search me-2"></i>Find
+                    </button>
+                    <a asp-action="Index" asp-controller="Stock" class="btn btn-outline-secondary">
+                        <i class="bi bi-x-circle me-2"></i>Clear
+                    </a>
+                </div>
+            </form>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">Book ID</th>
+                            <th scope="col">Book Title</th>
+                            <th scope="col">Current Stock</th>
+                            <th scope="col">Stock Status</th>
+                            <th scope="col" class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <span class="fw-bold">#@item.BookId</span>
+                                    </td>
+                                    <td>
+                                        <h6 class="mb-0">@item.BookName</h6>
+                                    </td>
+                                    <td>
+                                        <span class="fw-semibold">@item.Quantity units</span>
+                                    </td>
+                                    <td>
+                                        @if (item.Quantity > 10)
+                                        {
+                                            <span class="badge bg-success stock-badge">In Stock</span>
+                                        }
+                                        else if (item.Quantity > 0)
+                                        {
+                                            <span class="badge bg-warning text-dark stock-badge">Low Stock</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-danger stock-badge">Out of Stock</span>
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                        <a asp-action="ManangeStock" asp-controller="Stock" asp-route-bookId="@item.BookId" class="btn btn-primary">
+                                            <i class="bi bi-pencil-square me-1"></i>Update Stock
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="5" class="text-center py-4">
+                                    <div class="empty-stock-icon mb-3">
+                                        <i class="bi bi-box2"></i>
+                                    </div>
+                                    <h5 class="text-muted">No Stock Items Found</h5>
+                                    <p class="text-muted">Try adjusting your search or add new books to inventory.</p>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Table styling */
+    .table th {
+        font-weight: 600;
+        color: #495057;
+    }
+
+    .table td {
+        padding: 1rem;
+    }
+
+    /* Stock badge */
+    .stock-badge {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8rem;
+    }
+
+    /* Empty stock */
+    .empty-stock-icon {
+        font-size: 3rem;
+        color: #dee2e6;
+    }
+
+    /* Form styling */
+    .form-control, .form-select {
+        padding: 0.75rem 1rem;
+        border-radius: 0.375rem;
+    }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #3a5a78;
+            box-shadow: 0 0 0 0.25rem rgba(58, 90, 120, 0.25);
+        }
+
+    /* Button styling */
+    .btn-primary {
+        background-color: #3a5a78;
+        border-color: #3a5a78;
+    }
+
+        .btn-primary:hover {
+            background-color: #2c4660;
+            border-color: #2c4660;
+        }
+
+    .btn-outline-primary {
+        color: #3a5a78;
+        border-color: #3a5a78;
+    }
+
+        .btn-outline-primary:hover {
+            background-color: #3a5a78;
+            border-color: #3a5a78;
+        }
+</style>

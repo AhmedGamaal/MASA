@@ -1,0 +1,182 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">@ViewData["Title"]</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Log in</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card border-0 shadow-sm overflow-hidden">
+                <div class="row g-0">
+                    <div class="col-md-6 d-none d-md-block">
+                        <div class="login-image-container">
+                            <div class="login-image"></div>
+                            <div class="login-overlay">
+                                <div class="login-overlay-content">
+                                    <h2 class="text-white mb-3">Welcome Back!</h2>
+                                    <p class="text-white-50 mb-4">Sign in to access your account, track orders, and discover new books tailored to your interests.</p>
+                                    <div class="login-quote">
+                                        <i class="bi bi-quote fs-1 text-white-50"></i>
+                                        <p class="text-white fst-italic">"A reader lives a thousand lives before he dies. The man who never reads lives only one."</p>
+                                        <p class="text-white-50">— George R.R. Martin</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body p-4 p-lg-5">
+                            <div class="text-center d-md-none mb-4">
+                                <i class="bi bi-book-half fs-1 text-primary"></i>
+                                <h3 class="fw-bold">MASA Books</h3>
+                                <p class="text-muted">Sign in to your account</p>
+                            </div>
+
+                            <form id="account" method="post">
+                                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                                    <label asp-for="Input.Email" class="form-label">Email</label>
+                                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
+                                    <label asp-for="Input.Password" class="form-label">Password</label>
+                                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" asp-for="Input.RememberMe" />
+                                        <label class="form-check-label" asp-for="Input.RememberMe">
+                                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                        </label>
+                                    </div>
+                                    <a id="forgot-password" asp-page="./ForgotPassword" class="text-decoration-none">Forgot password?</a>
+                                </div>
+
+                                <div class="d-grid mb-4">
+                                    <button id="login-submit" type="submit" class="btn btn-primary btn-lg">
+                                        <i class="bi bi-box-arrow-in-right me-2"></i>Log in
+                                    </button>
+                                </div>
+
+                                <div class="text-center">
+                                    <p class="mb-0">Don't have an account?</p>
+                                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="fw-bold text-decoration-none">Register as a new user</a>
+                                </div>
+
+                                <hr class="my-4">
+
+                                <div class="text-center">
+                                    <a id="resend-confirmation" asp-page="./ResendEmailConfirmation" class="text-decoration-none">
+                                        <i class="bi bi-envelope me-1"></i>Resend email confirmation
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .login-image-container {
+        position: relative;
+        height: 100%;
+        min-height: 500px;
+    }
+
+    .login-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/images/login-books.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+        .login-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+    .login-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+    }
+
+    .login-overlay-content {
+        max-width: 400px;
+    }
+
+    .login-quote {
+        position: relative;
+        padding-left: 1rem;
+        margin-top: 2rem;
+        border-left: 3px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* Form styling */
+    .form-control, .form-select {
+        padding: 0.75rem 1rem;
+        border-radius: 0.375rem;
+    }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #3a5a78;
+            box-shadow: 0 0 0 0.25rem rgba(58, 90, 120, 0.25);
+        }
+
+    /* Card styling */
+    .card {
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+
+    /* Button styling */
+    .btn-primary {
+        background-color: #3a5a78;
+        border-color: #3a5a78;
+    }
+
+        .btn-primary:hover {
+            background-color: #2c4660;
+            border-color: #2c4660;
+        }
+</style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,208 @@
+﻿@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">Contact Us</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Contact</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+            <h2 class="fw-bold mb-4">Get In Touch</h2>
+            <p class="mb-4">We'd love to hear from you! Whether you have a question about our books, need assistance with an order, or want to collaborate with us, our team is here to help.</p>
+
+            <div class="d-flex mb-4">
+                <div class="me-3">
+                    <i class="bi bi-geo-alt-fill fs-4 text-primary"></i>
+                </div>
+                <div>
+                    <h5 class="fw-bold">Visit Us</h5>
+                    <p class="mb-0">Mansoura, Egypt</p>
+                </div>
+            </div>
+
+            <div class="d-flex mb-4">
+                <div class="me-3">
+                    <i class="bi bi-telephone-fill fs-4 text-primary"></i>
+                </div>
+                <div>
+                    <h5 class="fw-bold">Call Us</h5>
+                    <p class="mb-0">+20 101 964 0764</p>
+                    <p class="mb-0">+20 123 456 7891</p>
+                </div>
+            </div>
+
+            <div class="d-flex mb-4">
+                <div class="me-3">
+                    <i class="bi bi-envelope-fill fs-4 text-primary"></i>
+                </div>
+                <div>
+                    <h5 class="fw-bold">Email Us</h5>
+                    <p class="mb-0">info@masa-books.com</p>
+                    <p class="mb-0">support@masa-books.com</p>
+                </div>
+            </div>
+
+            <div class="d-flex mb-4">
+                <div class="me-3">
+                    <i class="bi bi-clock-fill fs-4 text-primary"></i>
+                </div>
+                <div>
+                    <h5 class="fw-bold">Opening Hours</h5>
+                    <p class="mb-0">Monday - Saturday: 10:00 AM - 9:00 PM</p>
+                    <p class="mb-0">Sunday: 11:00 AM - 6:00 PM</p>
+                </div>
+            </div>
+
+            <h5 class="fw-bold mb-3">Connect With Us</h5>
+            <div class="d-flex gap-3">
+                <a href="https://www.facebook.com/" class="btn btn-outline-primary rounded-circle">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="https://www.instagram.com/" class="btn btn-outline-primary rounded-circle">
+                    <i class="bi bi-instagram"></i>
+                </a>
+                <a href="https://x.com/" class="btn btn-outline-primary rounded-circle">
+                    <i class="bi bi-twitter"></i>
+                </a>
+                <a href="https://www.pinterest.com/" class="btn btn-outline-primary rounded-circle">
+                    <i class="bi bi-pinterest"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <h3 class="fw-bold mb-4">Send Us a Message</h3>
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Your Name *</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Your Email *</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Subject *</label>
+                            <input type="text" class="form-control" id="subject" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Your Message *</label>
+                            <textarea class="form-control" id="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 py-2">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-5">
+        <h3 class="fw-bold mb-4">Find Us</h3>
+        <div class="ratio ratio-21x9">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m21!1m12!1m3!1d13673.436411182214!2d31.382091567107707!3d31.044101154473577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m6!3e6!4m0!4m3!3m2!1d31.04112285085948!2d31.37859396665458!5e0!3m2!1sar!2seg!4v1746496262950!5m2!1sar!2seg"
+                    style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+
+    <div class="mb-5">
+        <h3 class="fw-bold mb-4">Frequently Asked Questions</h3>
+        <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        What payment methods do you accept?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        We accept credit/debit cards, Vodafone Cash, Fawry, and cash on delivery for orders within Egypt. For international orders, we accept credit/debit cards and PayPal.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        How long does shipping take?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        For orders within Cairo, delivery typically takes 2-3 business days. For other cities in Egypt, it takes 3-5 business days. International shipping varies by location and typically takes 7-14 business days.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        What is your return policy?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        We offer a 30-day return policy for books in their original condition. Please note that books with visible damage or wear cannot be returned unless there is a manufacturing defect. E-books and audiobooks have a 7-day return window if they haven't been fully downloaded or accessed.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Do you offer international shipping?
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, we ship to most countries worldwide. International shipping costs and delivery times vary depending on the destination. Please check our shipping page for more details. For e-books and digital products, these are available worldwide with instant delivery.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        How can I track my order?
+                    </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Once your order is shipped, you will receive a confirmation email with a tracking number. You can use this number to track your order on our website or the courier's website. For digital products, delivery confirmation will be sent to your email immediately after purchase.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-dark text-white p-5 rounded text-center">
+        <h3 class="fw-bold mb-3">Subscribe to Our Newsletter</h3>
+        <p class="mb-4">Stay updated with our latest book releases, author events, and exclusive offers</p>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="input-group mb-3">
+                    <input type="email" class="form-control" placeholder="Your Email Address" aria-label="Email Address">
+                    <button class="btn btn-outline-light fw-semibold" type="button">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+        
+        });
+    </script>
+}

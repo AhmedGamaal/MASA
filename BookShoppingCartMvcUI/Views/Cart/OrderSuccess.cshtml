@@ -1,0 +1,145 @@
+﻿@{
+    ViewData["Title"] = "Order Successful";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm text-center p-4 p-md-5">
+                <div class="order-success-icon mb-4">
+                    <i class="bi bi-check-circle-fill"></i>
+                </div>
+
+                <h1 class="display-5 fw-bold text-success mb-3">Order Successful!</h1>
+                <p class="lead mb-4">Thank you for your purchase. Your order has been received and is being processed.</p>
+
+                <div class="order-details p-4 mb-4">
+                    <div class="row">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <div class="order-detail-item">
+                                <h6 class="text-muted mb-1">Order Number</h6>
+                                <p class="fw-bold mb-0">#ORD-2023-@(new Random().Next(10000, 99999))</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="order-detail-item">
+                                <h6 class="text-muted mb-1">Order Date</h6>
+                                <p class="fw-bold mb-0">@DateTime.Now.ToString("MMMM dd, yyyy")</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-next-steps mb-4">
+                    <h5 class="fw-bold mb-3">What's Next?</h5>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="next-step-item">
+                                <div class="next-step-icon">
+                                    <i class="bi bi-envelope-check"></i>
+                                </div>
+                                <h6>Confirmation Email</h6>
+                                <p class="small text-muted mb-0">You'll receive an email with your order details.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="next-step-item">
+                                <div class="next-step-icon">
+                                    <i class="bi bi-box-seam"></i>
+                                </div>
+                                <h6>Order Processing</h6>
+                                <p class="small text-muted mb-0">We're preparing your books for shipment.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="next-step-item">
+                                <div class="next-step-icon">
+                                    <i class="bi bi-truck"></i>
+                                </div>
+                                <h6>Delivery</h6>
+                                <p class="small text-muted mb-0">Your books will be delivered within 2-5 business days.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
+                    <a href="@Url.Action("Index", "Home")" class="btn btn-primary">
+                        <i class="bi bi-house me-2"></i>Return to Home
+                    </a>
+                    <a href="@Url.Action("UserOrders", "UserOrder")" class="btn btn-outline-primary">
+                        <i class="bi bi-box me-2"></i>Track Order
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .order-success-icon {
+        width: 100px;
+        height: 100px;
+        background-color: rgba(25, 135, 84, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+    }
+
+        .order-success-icon i {
+            font-size: 50px;
+            color: #198754;
+        }
+
+    .order-details {
+        background-color: #f8f9fa;
+        border-radius: 0.5rem;
+    }
+
+    .next-step-item {
+        padding: 1.5rem;
+        background-color: #fff;
+        border-radius: 0.5rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        height: 100%;
+    }
+
+    .next-step-icon {
+        width: 50px;
+        height: 50px;
+        background-color: rgba(58, 90, 120, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+    }
+
+        .next-step-icon i {
+            font-size: 1.5rem;
+            color: #3a5a78;
+        }
+
+    /* Button styling */
+    .btn-primary {
+        background-color: #3a5a78;
+        border-color: #3a5a78;
+    }
+
+        .btn-primary:hover {
+            background-color: #2c4660;
+            border-color: #2c4660;
+        }
+
+    .btn-outline-primary {
+        color: #3a5a78;
+        border-color: #3a5a78;
+    }
+
+        .btn-outline-primary:hover {
+            background-color: #3a5a78;
+            border-color: #3a5a78;
+        }
+</style>

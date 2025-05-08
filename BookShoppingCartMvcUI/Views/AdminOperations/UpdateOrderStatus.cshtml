@@ -1,0 +1,88 @@
+﻿@model UpdateOrderStatusModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Update Order Status";
+}
+
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-primary mb-0">
+            <i class="bi bi-arrow-repeat me-2"></i>Update Order Status
+        </h2>
+        <a class="btn btn-outline-primary" asp-action="AllOrders">
+            <i class="bi bi-arrow-left me-2"></i>Back to Orders
+        </a>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <form asp-action="UpdateOrderStatus">
+                        <input type="hidden" asp-for="OrderId" />
+
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">Order ID</label>
+                            <input type="text" class="form-control" value="#@Model.OrderId" disabled />
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">New Order Status</label>
+                            <select class="form-select" asp-for="OrderStatusId" asp-items="@Model.OrderStatusList">
+                                <option value="">Select order status</option>
+                            </select>
+                            <span class="text-danger" asp-validation-for="OrderStatusId"></span>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-check2-circle me-2"></i>Update Status
+                            </button>
+                        </div>
+
+                        @if (TempData["msg"] != null)
+                        {
+                            <div class="alert alert-success mt-3">
+                                <i class="bi bi-check-circle me-2"></i>@TempData["msg"]
+                            </div>
+                        }
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Form styling */
+    .form-control, .form-select {
+        padding: 0.75rem 1rem;
+        border-radius: 0.375rem;
+    }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #3a5a78;
+            box-shadow: 0 0 0 0.25rem rgba(58, 90, 120, 0.25);
+        }
+
+    /* Button styling */
+    .btn-primary {
+        background-color: #3a5a78;
+        border-color: #3a5a78;
+    }
+
+        .btn-primary:hover {
+            background-color: #2c4660;
+            border-color: #2c4660;
+        }
+
+    .btn-outline-primary {
+        color: #3a5a78;
+        border-color: #3a5a78;
+    }
+
+        .btn-outline-primary:hover {
+            background-color: #3a5a78;
+            border-color: #3a5a78;
+        }
+</style>

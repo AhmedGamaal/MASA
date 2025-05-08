@@ -1,0 +1,260 @@
+﻿@model ShoppingCart
+@{
+    ViewData["Title"] = "Your Cart";
+}
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">Your Shopping Cart</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Cart</li>
+            </ol>
+        </nav>
+    </div>
+
+    @if (Model != null && Model.CartDetails != null && Model.CartDetails.Count > 0)
+    {
+        <div class="row">
+            <div class="col-lg-8 mb-4 mb-lg-0">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body p-4">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th scope="col">Book</th>
+                                        <th scope="col" class="text-center">Image</th>
+                                        <th scope="col">Genre</th>
+                                        <th scope="col">Unit Price</th>
+                                        <th scope="col">Total Price</th>
+                                        <th scope="col" class="text-center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.CartDetails)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="cart-item-info">
+                                                    <h5 class="mb-0">@item.Book.BookName</h5>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="cart-item-image">
+                                                    @if (string.IsNullOrEmpty(item.Book.Image))
+                                                    {
+                                                        <img src="/images/NoImage.png" alt="@item.Book.BookName" class="img-fluid rounded">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="/images/@item.Book.Image" alt="@item.Book.BookName" class="img-fluid rounded">
+                                                    }
+                                                </div>
+                                            </td>
+                                            <td>@item.Book.Genre.GenreName</td>
+                                            <td>$@item.Book.Price X @item.Quantity</td>
+                                            <td class="fw-bold">$@(item.Book.Price * item.Quantity)</td>
+                                            <td class="text-center">
+                                                <div class="d-flex justify-content-center gap-2">
+                                                    @if (item.Quantity < item.Book.Stock.Quantity)
+                                                    {
+                                                        <a class="btn btn-sm btn-primary" href="/Cart/AddItem?bookId=@item.BookId&&redirect=1">
+                                                            <i class="bi bi-plus"></i>
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="badge bg-danger">Out of stock</span>
+                                                    }
+                                                    <a class="btn btn-sm btn-outline-primary" href="/cart/removeitem?bookid=@item.BookId">
+                                                        <i class="bi bi-dash"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between mb-4">
+                    <a href="@Url.Action("Index", "Home")" class="btn btn-outline-primary">
+                        <i class="bi bi-arrow-left me-2"></i>Continue Shopping
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="mb-0 fw-bold">Order Summary</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between mb-3">
+                            <span>Subtotal</span>
+                            <span class="fw-bold">$@(Model.CartDetails.Select(item => item.Book.Price * item.Quantity).Sum())</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span>Shipping</span>
+                            <span class="fw-bold">$0.00</span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-4">
+                            <span class="fw-bold">Total</span>
+                            <span class="fw-bold text-primary fs-5">$@(Model.CartDetails.Select(item => item.Book.Price * item.Quantity).Sum())</span>
+                        </div>
+
+                        <div class="d-grid">
+                            <a href="/Cart/Checkout" class="btn btn-primary btn-lg">
+                                <i class="bi bi-credit-card me-2"></i>Proceed to Checkout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-3">We Accept</h5>
+                        <div class="d-flex gap-3 payment-methods">
+                            <div class="payment-icon">
+                                <i class="bi bi-credit-card"></i>
+                            </div>
+                            <div class="payment-icon">
+                                <i class="bi bi-cash"></i>
+                            </div>
+                            <div class="payment-icon">
+                                <i class="bi bi-wallet2"></i>
+                            </div>
+                        </div>
+                        <hr>
+                        <h5 class="fw-bold mb-3">Need Help?</h5>
+                        <p class="mb-2">
+                            <i class="bi bi-question-circle me-2"></i>
+                            <a href="#" class="text-decoration-none">Shipping Information</a>
+                        </p>
+                        <p class="mb-2">
+                            <i class="bi bi-arrow-return-left me-2"></i>
+                            <a href="@Url.Action("Privacy", "Home")" class="text-decoration-none">Return Policy</a>
+                        </p>
+                        <p class="mb-0">
+                            <i class="bi bi-headset me-2"></i>
+                            <a href="@Url.Action("Contact", "Home")" class="text-decoration-none">Contact Support</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="empty-cart text-center py-5">
+            <div class="empty-cart-icon mb-4">
+                <i class="bi bi-cart-x"></i>
+            </div>
+            <h2 class="mb-3">Your cart is empty</h2>
+            <p class="text-muted mb-4">Looks like you haven't added any books to your cart yet.</p>
+            <a href="@Url.Action("Index", "Home")" class="btn btn-primary btn-lg px-5">
+                Start Shopping
+            </a>
+        </div>
+    }
+</div>
+
+<style>
+    /* Cart Item Styling */
+    .cart-item-image {
+        width: 80px;
+        height: 100px;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+    .cart-item-info h5 {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    /* Empty Cart */
+    .empty-cart-icon {
+        font-size: 5rem;
+        color: #dee2e6;
+    }
+
+    /* Payment Methods */
+    .payment-methods {
+        display: flex;
+        gap: 10px;
+    }
+
+    .payment-icon {
+        width: 50px;
+        height: 30px;
+        background-color: #f8f9fa;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+    }
+
+    /* Responsive adjustments */
+    media (max-width: 767.98px) {
+        .table-responsive
+
+    {
+        border: 0;
+    }
+
+    .table thead {
+        display: none;
+    }
+
+    .table, .table tbody, .table tr, .table td {
+        display: block;
+        width: 100%;
+    }
+
+        .table tr {
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #dee2e6;
+            position: relative;
+            padding: 0.5rem;
+        }
+
+        .table td {
+            text-align: right;
+            padding-left: 50%;
+            position: relative;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+            .table td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 0;
+                width: 45%;
+                padding-left: 15px;
+                font-weight: 600;
+                text-align: left;
+            }
+
+    .cart-item-image {
+        margin: 0 auto;
+    }
+
+    .cart-item-info {
+        text-align: center;
+    }
+
+    }</style>
+

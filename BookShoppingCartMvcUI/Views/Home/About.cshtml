@@ -1,0 +1,235 @@
+﻿@{
+    ViewData["Title"] = "About Us";
+}
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">About MASA</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">About Us</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="row align-items-center mb-5">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+            <img src="/images/Books.jpeg" alt="MASA Bookstore Interior" class="img-fluid rounded shadow" onerror="this.src='/placeholder.svg?height=400&width=600'; this.onerror=null;" />
+        </div>
+        <div class="col-lg-6">
+            <p><strong>From Panic to Victory.</strong></p>
+            <p>Four students had procrastinated on their "MASA Store" bookstore project until two days before the deadline. Realizing the mess they were in, they gathered in a cramped library corner with only 2 months to finish. One’s notes were a jumbled mess, another kept misplacing their sketches, a third was on the verge of tears over the budget, and the fourth’s laptop died mid-design. They argued, scrambled, and shared one overused charger, but somehow pulled it together—dividing tasks, sketching a simple layout, and scraping together a basic plan. Exhausted but relieved, they finished MASA Store just in time, proving they could conquer chaos together.</p>
+        </div>
+    </div>
+
+    <div class="bg-light p-5 rounded mb-5">
+        <h2 class="fw-bold mb-4 text-center">Our Mission</h2>
+        <p class="text-center mb-5">At MASA, our mission is to celebrate and promote literary excellence through carefully curated book collections that honor diverse voices while embracing readers of all backgrounds and interests.</p>
+
+        <div class="row">
+            <div class="col-md-12">
+                <p>We are committed to:</p>
+                <ul class="list-unstyled">
+                    <li class="mb-3">
+                        <div class="d-flex">
+                            <div class="me-3">
+                                <i class="bi bi-check-circle-fill text-success fs-4"></i>
+                            </div>
+                            <div>
+                                <p class="mb-0">Supporting independent authors and small publishers</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="mb-3">
+                        <div class="d-flex">
+                            <div class="me-3">
+                                <i class="bi bi-check-circle-fill text-success fs-4"></i>
+                            </div>
+                            <div>
+                                <p class="mb-0">Offering a diverse selection of books from around the world</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="mb-3">
+                        <div class="d-flex">
+                            <div class="me-3">
+                                <i class="bi bi-check-circle-fill text-success fs-4"></i>
+                            </div>
+                            <div>
+                                <p class="mb-0">Creating a welcoming space for readers to discover new favorites</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="mb-3">
+                        <div class="d-flex">
+                            <div class="me-3">
+                                <i class="bi bi-check-circle-fill text-success fs-4"></i>
+                            </div>
+                            <div>
+                                <p class="mb-0">Providing exceptional customer service and personalized recommendations</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="mb-3">
+                        <div class="d-flex">
+                            <div class="me-3">
+                                <i class="bi bi-check-circle-fill text-success fs-4"></i>
+                            </div>
+                            <div>
+                                <p class="mb-0">Promoting literacy and a love of reading in our communities</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row align-items-center mb-5">
+        <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0">
+            <img src="/images/Books2.jpeg" alt="MASA Staff Arranging Books" class="img-fluid rounded shadow" onerror="this.src='/placeholder.svg?height=400&width=600'; this.onerror=null;" />
+        </div>
+        <div class="col-lg-6 order-lg-1">
+            <h2 class="fw-bold mb-4">Our Values</h2>
+
+            <div class="mb-4">
+                <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-hand-thumbs-up me-3 fs-4"></i>
+                    <h5 class="fw-bold mb-0">Authenticity</h5>
+                </div>
+                <p>We curate authentic, meaningful literature that resonates with readers and reflects diverse perspectives.</p>
+            </div>
+
+            <div class="mb-4">
+                <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-gem me-3 fs-4"></i>
+                    <h5 class="fw-bold mb-0">Quality</h5>
+                </div>
+                <p>We select books of exceptional quality, from compelling storytelling to thoughtful non-fiction.</p>
+            </div>
+
+            <div class="mb-4">
+                <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-tree me-3 fs-4"></i>
+                    <h5 class="fw-bold mb-0">Sustainability</h5>
+                </div>
+                <p>We are committed to environmentally responsible practices in our operations and supply chain.</p>
+            </div>
+
+            <div class="mb-4">
+                <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-people me-3 fs-4"></i>
+                    <h5 class="fw-bold mb-0">Community</h5>
+                </div>
+                <p>We foster a community of readers and writers, supporting literary events and book clubs.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-5">
+        <h2 class="fw-bold mb-4 text-center">Meet Our Team</h2>
+        <div class="row">
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="/images/ahmed.jpg" class="card-img-top" alt="Ahmed Gamal" style="min-height:400px; max-height:400px;" onerror="this.src='/placeholder.svg?height=300&width=300'; this.onerror=null;">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">Ahmed Gamal</h5>
+                        <p class="card-text">A Software Engineer with over 2 years of experience.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="/images/tawhed.jpg" class="card-img-top" alt="Abdulrahman Tawhed" style="min-height:400px; max-height:400px;" onerror="this.src='/placeholder.svg?height=300&width=300'; this.onerror=null;">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">Abdulrahman Tawhed</h5>
+                        <p class="card-text">A Software Engineer with over 2 years of experience.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="/images/mai.jpg" class="card-img-top" alt="Mai Shehab" style="min-height:400px; max-height:400px;" onerror="this.src='/placeholder.svg?height=300&width=300'; this.onerror=null;">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">Mai Shehab</h5>
+                        <p class="card-text">A Software Engineer with over 2 years of experience.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="/images/salma.jpg" class="card-img-top" alt="Salma Akram" style="min-height:400px; max-height:400px;" onerror="this.src='/placeholder.svg?height=300&width=300'; this.onerror=null;">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">Salma Akram</h5>
+                        <p class="card-text">A Software Engineer with over 2 years of experience.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-light p-5 rounded mb-5">
+        <h2 class="fw-bold mb-4 text-center">What Our Customers Say</h2>
+
+        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="d-flex flex-column align-items-center text-center p-4">
+                        <i class="bi bi-quote fs-1 mb-3 text-primary"></i>
+                        <p class="fs-5 mb-4">The selection at MASA is exceptional. I love how they blend classic literature with contemporary works. Every book I've purchased has become a treasured part of my collection.</p>
+                        <div>
+                            <h5 class="fw-bold mb-1">Nadia Ibrahim</h5>
+                            <p class="text-muted">Cairo, Egypt</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-flex flex-column align-items-center text-center p-4">
+                        <i class="bi bi-quote fs-1 mb-3 text-primary"></i>
+                        <p class="fs-5 mb-4">MASA's staff recommendations have introduced me to authors I might never have discovered otherwise. Their passion for books is evident in every interaction.</p>
+                        <div>
+                            <h5 class="fw-bold mb-1">Omar Farouk</h5>
+                            <p class="text-muted">Alexandria, Egypt</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-flex flex-column align-items-center text-center p-4">
+                        <i class="bi bi-quote fs-1 mb-3 text-primary"></i>
+                        <p class="fs-5 mb-4">As an avid reader, I appreciate MASA's commitment to quality and diversity in their book selection. Their online store is easy to navigate, and deliveries are always prompt.</p>
+                        <div>
+                            <h5 class="fw-bold mb-1">Layla Hassan</h5>
+                            <p class="text-muted">Giza, Egypt</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+                <button class="btn btn-outline-primary mx-2" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <button class="btn btn-outline-primary mx-2" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-dark text-white p-5 rounded text-center">
+        <h2 class="fw-bold mb-4">Experience the Joy of Reading</h2>
+        <p class="fs-5 mb-4">Discover our collection of premium books for readers of all ages and interests.</p>
+        <a href="@Url.Action("Index")" class="btn btn-outline-light btn-lg px-4 py-2 fw-semibold">Shop Now</a>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Initialize Bootstrap components if needed
+        document.addEventListener('DOMContentLoaded', function() {
+            var carousel = new bootstrap.Carousel(document.getElementById('testimonialCarousel'), {
+                interval: 5000
+            });
+        });
+    </script>
+}
