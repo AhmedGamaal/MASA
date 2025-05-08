@@ -23,5 +23,5 @@ MASA is an e-commerce platform designed to enhance the online book shopping expe
 - Ahmed Gamal - Full-Stack Developer  
 - Salma Akram - Full-Stack Developer  
 - Mai Shehab - Full-Stack Developer  
-- Abdelrahman Tawheed - Full-Stack Developer
+- Abdelrahman Tawhed - Full-Stack Developer
 
