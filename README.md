@@ -31,10 +31,10 @@ We’re a team of passionate developers who collaborated to build MASA as part o
 
 ---
 
-##  Design & System Diagrams
+##  Design & System Diagrams & Project Overview Video - Documentations 
 
 - **System Diagram** → [View on Google Drive](https://drive.google.com/drive/folders/1_xX3pzX3BVyZF7ChlCi6RxWEcUMzw419?usp=drive_link)  
-
+- **Project Overview Video - Documentations** → [View on Google Drive](https://drive.google.com/drive/u/0/folders/1Tot8FjTiXEi0QxrhTBvSMk9bC_Y_vGbP)  
 
 ---
 
